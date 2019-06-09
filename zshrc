@@ -101,3 +101,11 @@ source $ZSH/oh-my-zsh.sh
 
 alias i3conf='vim ~/.config/i3/config'
 alias vpnstatus='nordvpn status'
+alias weather='curl wttr.in'
+
+export EDITOR='vim'
+
+alias pacman='sudo pacman --color=auto'
+alias update='sudo pacman -Syyu --noconfirm && yay -Syu --noconfirm'
+alias yayUpdate="yay -Syu --noconfirm"
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
