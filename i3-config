@@ -36,14 +36,14 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+w exec brave
 
 #Disable window titlebar. Required by i3-gaps
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 9
 
 #Gaps settings
 smart_gaps on
 smart_borders on
 
 # Set screen placement and resolution
-exec --no-startup-id xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1 --off --output HDMI-1 --mode 3840x2160 --pos 3840x0 --rotate normal --output DP-2 --off --output HDMI-2 --off --dpi 110
+exec --no-startup-id xrandr --output eDP-1 --dpi 220 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1 --off --output HDMI-1 --mode 3840x2160 --pos 3840x0 --rotate normal --output DP-2 --off --output HDMI-2 --off --dpi 220
 
 #Add lock screen
 bindsym $mod+Shift+x exec --no-startup-id i3lock-next
@@ -53,6 +53,9 @@ exec --no-startup-id nm-applet
 
 #Set wallpaper
 exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/4k-wallpaper-blur-bulb-1213447.jpg
+
+#Set binding for selecting wallpapers
+bindsym $mod+Shift+w exec --no-startup-id ~/Scripts/background_select.sh
 
 #Start compton compositor
 exec --no-startup-id compton --config ~/.config/compton/compton.conf
@@ -70,7 +73,14 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun
 
 #Set US and Norwegian keymap with toggle on Alt+Shift
-exec_always --no-startup-id "setxkbmap -model pc104 -layout us,no -option grp:alt_shift_toggle"
+exec_always --no-startup-id "setxkbmap -model pc105 -layout us,no -option grp:alt_shift_toggle"
+
+#Bindings for webcam
+for_window [title="video0 - mpv"] floating enable
+for_window [title="video0 - mpv"] sticky enable
+for_window [title="video0 - mpv"] border pixel 0
+no_focus [title="video0 - mpv"]
+bindsym $mod+c exec --no-startup-id ~/Scripts/webcam_toggle.sh
 
 #Map Audio keys
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 8 +5%
@@ -79,6 +89,17 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 8 toggle
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id  playerctl next
 bindsym XF86AudioPrevious exec --no-startup-id playerctl previous
+
+
+# class                 border  backgr. text    indicator child_border
+client.focused          008000 #285577 ffffff 2e9ef4   285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
 
 # kill focused window
 bindsym $mod+Shift+q kill

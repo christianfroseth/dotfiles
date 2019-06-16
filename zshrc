@@ -99,6 +99,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
+export LC_ALL=C
+
 alias i3conf='vim ~/.config/i3/config'
 alias vpnstatus='nordvpn status'
 alias weather='curl wttr.in'
