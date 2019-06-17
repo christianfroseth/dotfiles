@@ -55,7 +55,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/4k-wallpaper-blur-bulb-1213447.jpg
 
 #Set binding for selecting wallpapers
-bindsym $mod+Shift+w exec --no-startup-id ~/Scripts/background_select.sh
+#bindsym $mod+Shift+w exec --no-startup-id ~/Scripts/background_select.sh
+bindsym $mod+Shift+w exec --no-startup-id sxiv -t ~/Pictures/Wallpapers
 
 #Start compton compositor
 exec --no-startup-id compton --config ~/.config/compton/compton.conf
