@@ -68,7 +68,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git node npm npx tmux vscode vim-interaction sudo python mvn github dotenv docker docker-compose archlinux)
+plugins=(git node npm tmux vscode vim-interaction sudo python mvn github dotenv docker docker-compose archlinux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,8 +106,17 @@ alias vpnstatus='nordvpn status'
 alias weather='curl wttr.in'
 
 export EDITOR='vim'
+export TERMINAL='xterm'
 
 alias pacman='sudo pacman --color=auto'
 alias update='sudo pacman -Syyu --noconfirm && yay -Syu --noconfirm'
 alias yayUpdate="yay -Syu --noconfirm"
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+
+
+zstyle ':completion:*' rehash true
+#set -o vi
+
+##[ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
+
+
