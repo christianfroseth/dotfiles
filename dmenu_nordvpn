@@ -1,0 +1,18 @@
+#!/bin/bash
+##Tiny helper script that uses dmenu to select a list of countries supported by NordVPN. Select country to connect. If already connected a prompt to disconnect will be shown
+
+##Christian Froseth
+
+font="System San Fransisco Display:size=15"
+connected=$(nordvpn status | grep Status | tr -d ' ' | cut -d ':' -f2)
+
+if [ "$connected" = "Connected" ]; then
+	disconnect=$(echo -e "No\nYes" | dmenu -p "Do you wish to disconnect from VPN?" -i -l 2 -fn "$font")
+	if [ "$disconnect" = "Yes" ];then
+		nordvpn disconnect
+	fi
+else
+	countries=$(nordvpn countries)
+	echo "$countries"| sed 's/ /\n/g' |sed '/^$/d' | awk 'NR>2' | sed 's/,$//' | dmenu -p "Select VPN location" -l 10 -fn "$font" -i | xargs -I {} nordvpn connect {}
+fi
+
